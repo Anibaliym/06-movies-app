@@ -1,5 +1,7 @@
 import { nowPlayingAction } from "@/core/actions/movies/now-playing.action"
 import { popularMoviesAction } from "@/core/actions/movies/popular.action"
+import { topRatedAction } from "@/core/actions/movies/top-rated.action"
+import { upComingAction } from "@/core/actions/movies/up-comming.action"
 import { useQuery } from "@tanstack/react-query"
 
 export const useMovies = () => {
@@ -15,9 +17,24 @@ export const useMovies = () => {
         staleTime: 1000 * 60 * 60 * 24 // 24 horas
     })
 
+
+    const topRatedQuery = useQuery({
+        queryKey: ['movies', 'top_rated'],
+        queryFn: topRatedAction,
+        staleTime: 1000 * 60 * 60 * 24 // 24 horas
+    })
+
+    const upcomingQuery = useQuery({
+        queryKey: ['movies', 'upcoming'],
+        queryFn: upComingAction,
+        staleTime: 1000 * 60 * 60 * 24 // 24 horas
+    })
+
     return {
         nowPlayingQuery,
-        popularQuery
+        popularQuery,
+        topRatedQuery,
+        upcomingQuery,
     };
 }
 

@@ -12,7 +12,7 @@ export const popularMoviesAction = async () => {
     }
     catch (error) {
         console.log(error)
-        throw 'Cannot load playing movies';
+        throw 'Cannot load popular movies';
 
     }
 }

@@ -2,16 +2,16 @@ import { movieApi } from "@/core/api/movie-api";
 import { MovieMapper } from "@/infrastructure/interfaces/mappers/movie.mapper";
 import { MovieDBMoviesResponse } from "@/infrastructure/interfaces/moviedb-response";
 
-export const nowPlayingAction = async () => {
+export const topRatedAction = async () => {
     try {
-        const { data } = await movieApi.get<MovieDBMoviesResponse>('/now_playing');
-        const movies = data.results.map(MovieMapper.fromTheMovieDbToMovie)
+        const { data } = await movieApi.get<MovieDBMoviesResponse>('/top_rated');
 
+        const movies = data.results.map(MovieMapper.fromTheMovieDbToMovie)
         return movies;
     }
     catch (error) {
         console.log(error)
-        throw 'Cannot load playing movies';
+        throw 'Cannot load top_rated movies';
 
     }
 }
